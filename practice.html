@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Events and speedrun practice – EmulatorJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#111418">
+    <meta name="description" content="Practise speedrun segments from save points with a frame-accurate timer, splits and personal bests; share save points as links; race two players on one screen.">
+    <link rel="icon" href="docs/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Practice">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="apple-touch-icon" href="docs/Logo.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script src="assets/early-view.js"></script>
+    <link rel="stylesheet" href="assets/app.css">
+</head>
+<body class="practice">
+    <main id="pr">
+        <header class="col-head">
+            <a class="back-start" href="index.html">&#8592; All uses</a>
+            <h1>Events and speedrun practice</h1>
+            <p class="muted small">Split a game into segments, give each one a save point, and practise it again and again with a frame-accurate timer. Do full runs with splits and personal bests, share a save point as a link, or race a friend on one screen.</p>
+        </header>
+        <section class="card cls-bar">
+            <label class="cls-pick">Game <select id="prGame"></select></label>
+            <button type="button" id="prLoad" class="primary">Load game</button>
+            <div class="pr-modes" role="tablist" aria-label="Mode">
+                <button type="button" role="tab" data-mode="practice" class="on">Practice</button>
+                <button type="button" role="tab" data-mode="run">Full run</button>
+                <button type="button" role="tab" data-mode="race">Race</button>
+            </div>
+        </section>
+
+        <div class="pr-layout">
+            <section class="pr-stage-col">
+                <div class="pr-stages" id="prStages">
+                    <div class="pr-stage" data-player="0">
+                        <iframe class="pr-frame" title="Game" allow="autoplay; fullscreen; gamepad; cross-origin-isolated"></iframe>
+                        <p class="cls-wait pr-wait">Choose a game and press Load game.</p>
+                        <div class="pr-timer"><span class="pr-who"></span><strong class="pr-time">0.00</strong><span class="pr-seg"></span><span class="pr-delta"></span></div>
+                    </div>
+                </div>
+                <div id="prCountdown" class="pr-countdown" hidden></div>
+                <div class="cf-actions pr-actions" role="toolbar" aria-label="Timer">
+                    <button type="button" id="prSplit" class="primary" title="Split (. in the game)">Split</button>
+                    <button type="button" id="prAgain" title="Back to the save point and try again (' in the game)">Again</button>
+                    <button type="button" id="prUndo" title="Take back the last split">Undo split</button>
+                    <button type="button" id="prSkip" title="Skip this segment">Skip</button>
+                    <button type="button" id="prPause">&#10073;&#10073; Pause</button>
+                </div>
+                <p id="prStatus" class="small muted" aria-live="polite"></p>
+                <p class="small muted" id="prKeys">In the game: <kbd>.</kbd> split · <kbd>'</kbd> again · <kbd>;</kbd> skip. The timer counts the console's own frames, so it is exact and stops while the game is paused.</p>
+            </section>
+
+            <aside class="card pr-panel" id="prPanel">
+                <div id="prPracticePanel"></div>
+                <div id="prRunPanel" hidden></div>
+                <div id="prRacePanel" hidden></div>
+            </aside>
+        </div>
+    </main>
+    <div id="banners" aria-live="polite"></div>
+    <script type="module" src="assets/practice.js"></script>
+</body>
+</html>

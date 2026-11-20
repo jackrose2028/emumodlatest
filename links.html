@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Links – EmulatorJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#111418">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="EmulatorJS">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="docs/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script src="assets/early-view.js"></script>
+    <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+    <main id="menu" class="links-page">
+        <header>
+            <a class="button" href="index.html">&#8592; Home</a>
+            <h1>Links</h1>
+            <p class="muted">Every part of this site. Everything runs from this site's own files.</p>
+        </header>
+
+        <section class="card">
+            <h2>Players</h2>
+            <ul class="link-list">
+                <li><a href="index.html"><strong>Start page</strong></a><span>Choose one of the ten use cases, or Basic.</span></li>
+                <li><a href="basic.html"><strong>Basic</strong></a><span>Open a ROM or zip, recent games, game library folders, engine choice (EmulatorJSMod or NostalgistMod), 2.5D and options.</span></li>
+                <li><a href="collection.html"><strong>My Collection</strong> (use case 1)</a><span>Your own game backups on every device: add files or folders, covers, favourites, play time, export and import with saves.</span></li>
+                <li><a href="homebrew.html"><strong>Homebrew showcase</strong> (use case 2)</a><span>New games for old consoles with credits, licence, controls for keyboard, controller and touch, screenshots, play in place, share and embed. Publish one by adding a folder to homebrew/; there is also a <a href="homebrew/feed.xml">feed of releases</a>.</span></li>
+                <li><a href="kiosk.html"><strong>Museum and exhibit kiosk</strong> (use case 3)</a><span>Attract loop, approved games, time per visitor, opening hours, two languages and auto-reset for public screens. Staff settings: five taps in the top-left corner (or Ctrl+Shift+K) and the PIN.</span></li>
+                <li><a href="classroom.html"><strong>Classroom: how retro games work</strong> (use case 4)</a><span>A running game beside live views of its palettes, sprites, background map, tiles, sound channels, memory, frames and input; pause and step frame by frame; seven 45-minute lessons with a step-by-step presenter, exit tickets, printable worksheets and answer keys.</span></li>
+                <li><a href="devtour.html"><strong>Web development case study</strong> (use case 5)</a><span>A guided tour of how this site works (static modules, service worker, cross-origin isolation, WebAssembly, WebGL, Web Audio, storage, input, phone layout, file detection, checksums, iframes, branding, accessibility, publishing), with live values on your device, the real code, and eight exercises with hints and checks.</span></li>
+                <li><a href="archive.html"><strong>Preservation archive</strong> (use case 6)</a><span>Catalogue records for public-domain and rights-cleared software: provenance, licence, media, a permanent link and citation, checksums (CRC32, MD5, SHA-1) verified in your browser, and play in place. Export as JSON, CSV or a zip with every file.</span></li>
+                <li><a href="comfort.html"><strong>Accessible and comfort play</strong> (use case 7)</a><span>Presets (Relaxed, Low vision, One hand, One switch) and every option on its own: game speed, rewind, auto-save, hold-to-toggle buttons, auto-fire, one-hand keyboards, big movable touch controls, colour filters, sound captions and one-switch scanning, remembered per game.</span></li>
+                <li><a href="community.html"><strong>Community spaces</strong> (use case 8)</a><span>A locked-down, low-power game launcher for schools, libraries, shelters, hospitals and waiting rooms: chosen games, opening and quiet hours, a volume limit, turns, break reminders, fresh saves for each visitor, and an offline package for devices without internet.</span></li>
+                <li><a href="practice.html"><strong>Events and speedrun practice</strong> (use case 9)</a><span>Segments with save points, a frame-accurate timer, practice attempts that show your improvement, full runs with splits, personal bests and golds, save points shared as links, and two-player races on one screen; results export as JSON or CSV.</span></li>
+                <li><a href="kit.html"><strong>Build your own arcade</strong> (use case 10)</a><span>Brand the whole site with one file, site.json: name, colours, logo, which parts and systems to show, featured games and footer. Live preview, a branding pack and a guide to publishing on GitHub Pages.</span></li>
+                <li><a href="play.html"><strong>Game library in the player</strong></a><span>Every ROM and zip in data/A2600, GB, GBC, GG, NES, SNES and N64, one click to play.</span></li>
+                <li><a href="obsoletemod/"><strong>ObsoleteMod</strong> (Emu retro shelf)</a><span>Seven-system game shelf with ten library views, folder/ZIP/ROM import, ROM asset export, touch controls and its own emulator settings. Runs on this site's EmulatorJSMod engine and cores.</span></li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>ObsoleteMod pages</h2>
+            <ul class="link-list">
+                <li><a href="obsoletemod/config.html"><strong>Emulator configuration</strong></a><span>Video filter (Super Eagle by default), audio, input, saves and per-system overrides for ObsoleteMod.</span></li>
+                <li><a href="obsoletemod/links.html"><strong>ROM links</strong></a><span>ObsoleteMod's reference page of external ROM collections.</span></li>
+                <li><a href="obsoletemod/README.md"><strong>ObsoleteMod readme</strong></a><span>How its library, ROM folders and manifest work.</span></li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Documents</h2>
+            <ul class="link-list">
+                <li><a href="ENHANCEMENTS.txt" target="_blank" rel="noopener"><strong>What's changed from the original EmulatorJS</strong></a><span>Every enhancement and change, with the addenda.</span></li>
+                <li><a href="README.md"><strong>README</strong></a><span>Running the site, adding games and cores, publishing on GitHub Pages.</span></li>
+                <li><a href="reference.html"><strong>Reference docs</strong></a><span>One explained page for every file in the project (what it is, how it works, why it exists, what uses it), with a project overview, an asset index, a ROM evaluation and a filter to find any file.</span></li>
+            </ul>
+        </section>
+    </main>
+    <script type="module">import { initDevice } from "./assets/mobile.js"; initDevice();</script>
+</body>
+</html>

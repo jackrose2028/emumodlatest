@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Community games – EmulatorJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#111418">
+    <meta name="description" content="A locked-down, low-power game launcher for schools, shelters, hospitals and waiting rooms, with opening hours, a volume limit and fresh saves for each visitor.">
+    <link rel="icon" href="docs/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Games">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="apple-touch-icon" href="docs/Logo.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script src="assets/early-view.js"></script>
+    <link rel="stylesheet" href="assets/app.css">
+</head>
+<body class="community">
+    <!-- Visitors: the game list -->
+    <main id="cmHome" class="cm-screen" hidden>
+        <header class="cm-head">
+            <div>
+                <h1 id="cmPlace">Games</h1>
+                <p id="cmWelcome" class="cm-welcome"></p>
+            </div>
+            <div class="cm-clock"><strong id="cmClock"></strong><span id="cmHours"></span></div>
+        </header>
+        <div class="cm-chips" id="cmChips" role="toolbar" aria-label="Filter games"></div>
+        <ul class="cm-tiles" id="cmTiles"></ul>
+        <footer class="cm-foot">
+            <span id="cmNote"></span>
+            <button type="button" id="cmStaff" class="cm-staff">Staff</button>
+        </footer>
+    </main>
+
+    <!-- Outside opening hours -->
+    <main id="cmClosed" class="cm-screen cm-closed" hidden>
+        <h1 id="cmClosedPlace"></h1>
+        <p class="cm-closed-big">The games are closed right now.</p>
+        <p id="cmNextOpen" class="cm-closed-next"></p>
+        <button type="button" id="cmStaff2" class="cm-staff">Staff</button>
+    </main>
+
+    <!-- A visitor's turn -->
+    <section id="cmPlay" class="cm-screen cm-play" hidden>
+        <header class="cm-bar">
+            <strong id="cmGameTitle"></strong>
+            <span id="cmTime" class="cm-time" hidden></span>
+            <span class="cm-bar-tools">
+                <button type="button" id="cmSave">Save</button>
+                <button type="button" id="cmLoad">Load</button>
+                <button type="button" id="cmEnd" class="cm-end">End my turn</button>
+            </span>
+        </header>
+        <div class="cm-frame-wrap">
+            <iframe id="cmFrame" title="Game" allow="autoplay; fullscreen; gamepad; cross-origin-isolated"></iframe>
+            <div id="cmLoading" class="k-overlay k-loading"><p>Starting <strong id="cmLoadingTitle"></strong>…</p></div>
+            <div id="cmNotice" class="k-overlay" hidden>
+                <div class="k-notice-box">
+                    <h2 id="cmNoticeTitle"></h2>
+                    <p id="cmNoticeText"></p>
+                    <p class="k-count" id="cmNoticeCount"></p>
+                    <div class="buttons cm-notice-buttons">
+                        <button type="button" id="cmNoticeGo" class="k-big"></button>
+                        <button type="button" id="cmNoticeEnd" hidden>End my turn</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Between visitors -->
+    <section id="cmBye" class="cm-screen cm-closed" hidden>
+        <p class="cm-closed-big">Thanks for playing!</p>
+        <p id="cmByeText" class="cm-closed-next"></p>
+    </section>
+
+    <!-- Staff PIN -->
+    <div id="cmPin" class="k-overlay k-pin" hidden>
+        <div class="k-pin-box" role="dialog" aria-modal="true" aria-labelledby="cmPinTitle">
+            <h2 id="cmPinTitle">Staff PIN</h2>
+            <p id="cmPinShow" class="k-pin-show" aria-live="polite"></p>
+            <p id="cmPinMsg" class="k-pin-msg" aria-live="polite"></p>
+            <div class="k-pin-pad" id="cmPinPad"></div>
+        </div>
+    </div>
+
+    <!-- Staff settings -->
+    <main id="cmSetup" class="k-setup" hidden>
+        <header class="col-head">
+            <a class="back-start" href="index.html">&#8592; All uses (leave this mode)</a>
+            <h1>Community spaces</h1>
+            <p class="muted small">A game corner for a school, library, shelter, hospital ward or waiting room, on an old or donated laptop, Chromebook or tablet. Visitors only see the games you choose, during the hours you set, at a volume you limit, and each visitor starts with fresh saves. Set it up once; then it runs without anything to configure.</p>
+        </header>
+        <section class="card k-status" id="cmStatus"></section>
+        <section class="card">
+            <h2>Place</h2>
+            <div class="k-form">
+                <label>Name shown at the top <input id="cmName" type="text" maxlength="60" placeholder="Library games corner"></label>
+                <label>Welcome line <input id="cmWelcomeIn" type="text" maxlength="140" placeholder="Pick a game. Please be kind to the next person and end your turn when you're done."></label>
+            </div>
+        </section>
+        <section class="card">
+            <h2>Games</h2>
+            <p class="muted small">Tick the games visitors may play. Games from <a href="homebrew.html">the Homebrew showcase</a>, the <code>data/</code> library folders and <a href="collection.html">My Collection</a> on this device can be used.</p>
+            <div class="col-filter">
+                <input type="search" id="cmFind" placeholder="Find a game" autocomplete="off" aria-label="Find a game">
+                <button type="button" id="cmAll">Tick all shown</button>
+                <button type="button" id="cmNone">Untick all</button>
+            </div>
+            <div id="cmGames" class="k-games"></div>
+        </section>
+        <section class="card">
+            <h2>Opening hours</h2>
+            <p class="muted small">Outside these hours the screen says the games are closed and when they open again. With no rows, the games are always open.</p>
+            <div id="cmHoursRows" class="cm-hours"></div>
+            <button type="button" id="cmAddHours">Add opening hours</button>
+            <h3>Quiet hours</h3>
+            <div class="k-form">
+                <label>From <input id="cmQuietFrom" type="time"></label>
+                <label>To <input id="cmQuietTo" type="time"></label>
+                <label>Volume during quiet hours <input id="cmQuietVol" type="range" min="0" max="100" step="5"></label>
+            </div>
+        </section>
+        <section class="card">
+            <h2>Turns</h2>
+            <div class="k-form">
+                <label>Loudest volume allowed <input id="cmMaxVol" type="range" min="0" max="100" step="5"></label>
+                <label>Time per turn (minutes, 0 = no limit) <input id="cmTurn" type="number" min="0" max="240"></label>
+                <label>Suggest a break every (minutes, 0 = never) <input id="cmBreak" type="number" min="0" max="240"></label>
+                <label>End the turn when nobody plays for (minutes) <input id="cmIdle" type="number" min="1" max="60"></label>
+            </div>
+            <div class="k-checks">
+                <label><input type="checkbox" id="cmClear"> Clear saves when a turn ends, so the next person starts fresh</label>
+                <label><input type="checkbox" id="cmLowPower"> Low-power mode (lighter graphics work and a power saver, for old devices)</label>
+                <label><input type="checkbox" id="cmFull"> Full screen on the first touch</label>
+            </div>
+            <div class="buttons"><button type="button" id="cmClearNow">Clear all saves now</button></div>
+        </section>
+        <section class="card">
+            <h2>Staff PIN</h2>
+            <p class="muted small" id="cmPinNote"></p>
+            <div class="k-form">
+                <label>New PIN (4 to 8 digits) <input id="cmPin1" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></label>
+                <label>New PIN again <input id="cmPin2" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></label>
+            </div>
+        </section>
+        <section class="card">
+            <h2>Offline</h2>
+            <p class="muted small"><strong>This device</strong>: "Prepare this device" stores the chosen games and their emulator cores in the browser, so it keeps working with no internet; on a Chromebook or tablet, also install the site (browser menu → Install, or Add to Home Screen). <strong>Another device</strong>: "Download offline package" makes one zip with the site, the chosen games, their cores and these settings. Unzip it on a laptop and double-click START-COMMUNITY.bat (Windows) or run start-community.sh (Mac, Linux); it needs Python 3, no internet.</p>
+            <div class="buttons">
+                <button type="button" id="cmPrepare">Prepare this device</button>
+                <button type="button" id="cmPackage">Download offline package</button>
+                <button type="button" id="cmExport">Export settings</button>
+                <label class="button">Import settings<input type="file" id="cmImport" accept=".json,application/json" hidden></label>
+            </div>
+            <p id="cmOfflineMsg" class="small muted" aria-live="polite"></p>
+        </section>
+        <div class="k-start">
+            <p id="cmSetupMsg" class="k-setup-msg" aria-live="polite"></p>
+            <button type="button" id="cmStart" class="primary k-big">Open the games</button>
+            <button type="button" id="cmForget" class="danger">Turn this mode off on this device</button>
+        </div>
+    </main>
+    <div id="banners" aria-live="polite"></div>
+    <script type="module" src="assets/community.js"></script>
+</body>
+</html>

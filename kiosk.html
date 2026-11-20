@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" class="kiosk-page">
+<head>
+    <meta charset="utf-8">
+    <title>Kiosk – EmulatorJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Museum and exhibit kiosk: an attract loop, an approved game list and timed sessions for public screens.">
+    <link rel="icon" href="docs/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Kiosk">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="apple-touch-icon" href="docs/Logo.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script src="assets/early-view.js"></script>
+    <link rel="stylesheet" href="assets/app.css">
+</head>
+<body class="kiosk-body">
+    <!-- Attract loop: rotating games with captions while nobody is playing -->
+    <section id="kAttract" class="k-screen k-attract" hidden>
+        <div class="k-slide" id="kSlide">
+            <div class="k-slide-pic" id="kSlidePic"></div>
+            <div class="k-slide-text">
+                <p class="k-kicker" id="kKicker"></p>
+                <h1 id="kSlideTitle"></h1>
+                <p id="kSlideCaption"></p>
+            </div>
+        </div>
+        <div class="k-attract-foot">
+            <p class="k-call" id="kCall">Touch the screen or press any button to play</p>
+            <div class="k-dots" id="kDots" aria-hidden="true"></div>
+            <button type="button" class="k-lang" id="kLangA" hidden></button>
+        </div>
+    </section>
+
+    <!-- Game list: big tiles, touch, keyboard or controller -->
+    <section id="kMenu" class="k-screen k-menu" hidden>
+        <header class="k-menu-head">
+            <h1 id="kMenuTitle">Choose a game</h1>
+            <p id="kMenuHint" class="k-menu-hint">Touch a game, or use the controller and press A</p>
+            <button type="button" class="k-lang" id="kLangM" hidden></button>
+        </header>
+        <ul id="kTiles" class="k-tiles"></ul>
+    </section>
+
+    <!-- Closed: outside opening hours the screen is dark and shows when it opens again -->
+    <section id="kClosed" class="k-screen k-closed" hidden>
+        <div class="k-closed-box" id="kClosedBox">
+            <h1 id="kClosedTitle">Closed</h1>
+            <p id="kClosedText"></p>
+        </div>
+    </section>
+
+    <!-- Playing: the game runs in a frame; the kiosk keeps the time and watches for idle players -->
+    <section id="kPlay" class="k-screen k-play" hidden>
+        <iframe id="kFrame" title="Game" allow="autoplay; fullscreen; gamepad; cross-origin-isolated"></iframe>
+        <div class="k-hud">
+            <span id="kTime" class="k-time" hidden></span>
+            <button id="kHelp" class="k-quit" type="button" hidden>? How to play</button>
+            <button id="kVol" class="k-quit" type="button" hidden aria-live="polite">&#128266;</button>
+            <button id="kQuit" class="k-quit" type="button">&#10005; Other games</button>
+        </div>
+        <p id="kToast" class="k-toast" role="status" hidden></p>
+        <div id="kLoading" class="k-overlay k-loading">
+            <div class="k-loading-box">
+                <p><span id="kLoadingWord">Starting</span> <strong id="kLoadingTitle"></strong>…</p>
+                <p id="kLoadingHow" class="k-loading-how" hidden></p>
+            </div>
+        </div>
+        <div id="kHow" class="k-overlay" hidden>
+            <div class="k-notice-box">
+                <h2 id="kHowTitle">How to play</h2>
+                <p id="kHowText" class="k-how-text"></p>
+                <button id="kHowBack" class="k-big" type="button">Back to the game</button>
+            </div>
+        </div>
+        <div id="kNotice" class="k-overlay" hidden>
+            <div class="k-notice-box">
+                <h2 id="kNoticeTitle"></h2>
+                <p id="kNoticeText"></p>
+                <p class="k-count" id="kNoticeCount"></p>
+                <button id="kNoticeBtn" class="k-big" type="button" hidden>Keep playing</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Staff: hidden gesture (five taps in the top-left corner, or Ctrl+Shift+K) then a PIN -->
+    <div id="kHot" class="k-hot" aria-hidden="true"></div>
+    <div id="kPin" class="k-overlay k-pin" hidden>
+        <div class="k-pin-box" role="dialog" aria-modal="true" aria-labelledby="kPinTitle">
+            <h2 id="kPinTitle">Staff PIN</h2>
+            <p id="kPinShow" class="k-pin-show" aria-live="polite"></p>
+            <p id="kPinMsg" class="k-pin-msg" aria-live="polite"></p>
+            <div class="k-pin-pad" id="kPinPad"></div>
+        </div>
+    </div>
+
+    <!-- Staff panel: set up the kiosk -->
+    <main id="kSetup" class="k-setup" hidden>
+        <header class="col-head">
+            <a class="back-start" id="kLeave" href="index.html">&#8592; All uses (leave kiosk mode)</a>
+            <h1>Museum and exhibit kiosk</h1>
+            <p class="muted small">For public screens and touch kiosks: an attract loop when nobody plays, an approved list of games, a time limit per visitor and a reset when a player walks away. Staff open these settings with <strong>five quick taps in the top-left corner</strong> of the screen (or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>) and the PIN.</p>
+        </header>
+        <section class="card k-status" id="kStatus"></section>
+        <p id="kAutoNote" class="small muted k-auto-note" hidden></p>
+
+        <section class="card">
+            <h2>Games visitors may play</h2>
+            <p class="muted small">Tick the games for this screen. Games from <a href="homebrew.html">the Homebrew showcase</a>, the game library folders in <code>data/</code> and <a href="collection.html">My Collection</a> on this device can be used.</p>
+            <h3 class="k-sub">On this screen, in this order</h3>
+            <p class="muted small">The caption is shown in the attract loop and on the game's tile (one or two sentences). How to play is shown while the game starts and behind the <strong>How to play</strong> button. Showcase games come with both filled in.</p>
+            <ol id="kOrder" class="k-order"></ol>
+            <h3 class="k-sub">All games</h3>
+            <div class="col-filter">
+                <input type="search" id="kFind" placeholder="Find a game" autocomplete="off" aria-label="Find a game">
+                <button type="button" id="kAll">Tick all shown</button>
+                <button type="button" id="kNone">Untick all</button>
+            </div>
+            <div id="kGames" class="k-games"></div>
+        </section>
+
+        <section class="card">
+            <h2>Screen</h2>
+            <div class="k-form">
+                <label>Title on the game list <input id="kTitle" type="text" maxlength="80"></label>
+                <label>Call to action in the attract loop <input id="kWelcome" type="text" maxlength="120"></label>
+                <label>Time per visitor (minutes, 0 = no limit) <input id="kSession" type="number" min="0" max="240" step="1"></label>
+                <label>Back to the attract loop after nobody plays for (seconds) <input id="kIdle" type="number" min="15" max="3600" step="5"></label>
+                <label>Each attract slide shows for (seconds) <input id="kSlideSec" type="number" min="3" max="120" step="1"></label>
+                <label>Game volume <input id="kVolume" type="range" min="0" max="100" step="5"></label>
+                <label>Restart the page every night at
+                    <select id="kReload"></select></label>
+                <label>Dim the screen after nobody plays for (minutes, 0 = never) <input id="kDim" type="number" min="0" max="600" step="1"></label>
+            </div>
+            <h3 class="k-sub">Languages</h3>
+            <div class="k-form">
+                <label>Language <select id="kLang1"></select></label>
+                <label>Second language (visitors switch with a button) <select id="kLang2"></select></label>
+                <label class="k-l2">Title on the game list, second language <input id="kTitle2" type="text" maxlength="80"></label>
+                <label class="k-l2">Call to action, second language <input id="kWelcome2" type="text" maxlength="120"></label>
+            </div>
+            <p class="muted small">Leave a title or call to action empty to use the built-in wording for that language. With two languages the attract loop takes turns between them, and each game gets a second caption and How to play.</p>
+            <div class="k-checks">
+                <label><input type="checkbox" id="kFull"> Full screen (entered on the first touch; on iPhone add the site to the Home Screen instead)</label>
+                <label><input type="checkbox" id="kQuitOk"> Visitors may leave a game for the game list</label>
+                <label><input type="checkbox" id="kAttractShots"> Take a picture of each game for the attract loop while it is played</label>
+                <label><input type="checkbox" id="kVisVol"> Visitors may turn the sound down or off (never above the game volume)</label>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Opening hours</h2>
+            <p class="muted small">Outside these hours the screen goes dark and shows when it opens again; a game being played when it closes gets a short goodbye. With no rows the kiosk is always open.</p>
+            <div id="kHoursRows" class="cm-hours"></div>
+            <button type="button" id="kAddHours">Add opening hours</button>
+        </section>
+
+        <section class="card">
+            <h2>Staff PIN</h2>
+            <p class="muted small" id="kPinNote"></p>
+            <div class="k-form">
+                <label>New PIN (4 to 8 digits) <input id="kPin1" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="new-password"></label>
+                <label>New PIN again <input id="kPin2" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="new-password"></label>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Offline and other screens</h2>
+            <p class="muted small">Prepare for offline downloads every ticked game and its emulator core into this browser, so the kiosk keeps working without a network. It runs again each time the kiosk starts while online. Export settings saves them as <code>kiosk.json</code>: import it on another screen, or put it next to <code>kiosk.html</code> on the site so new screens start with it.</p>
+            <div class="k-checks">
+                <label><input type="checkbox" id="kManaged"> Follow the site's <code>kiosk.json</code>: check it every half hour and use any change between visitors (for many screens managed from one file)</label>
+            </div>
+            <div class="buttons">
+                <button type="button" id="kOffline">Prepare for offline</button>
+                <button type="button" id="kCheck">Check every game</button>
+                <button type="button" id="kExport">Export settings</button>
+                <label class="button">Import settings<input type="file" id="kImport" accept=".json,application/json" hidden></label>
+            </div>
+            <p id="kOfflineMsg" class="small muted" aria-live="polite"></p>
+            <div id="kCheckOut" class="k-check-out" aria-live="polite"></div>
+        </section>
+
+        <div class="k-start">
+            <p id="kSetupMsg" class="k-setup-msg" aria-live="polite"></p>
+            <button type="button" id="kStart" class="primary k-big">Start kiosk</button>
+            <button type="button" id="kForget" class="danger">Turn off the kiosk on this device</button>
+        </div>
+    </main>
+    <div id="banners" aria-live="polite"></div>
+    <script type="module" src="assets/kiosk.js"></script>
+</body>
+</html>

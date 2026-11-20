@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Homebrew showcase – EmulatorJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#111418">
+    <meta name="description" content="Play your own ROM files in the browser. Everything runs locally.">
+    <link rel="icon" href="docs/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="EmulatorJS">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="apple-touch-icon" href="docs/Logo.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script src="assets/early-view.js"></script>
+    <link rel="stylesheet" href="assets/app.css">
+    <link rel="alternate" type="application/atom+xml" title="Homebrew releases" href="homebrew/feed.xml">
+<body class="homebrew">
+    <main id="hb">
+        <header class="col-head">
+            <a class="back-start" id="hbBack" href="index.html">&#8592; All uses</a>
+            <h1 id="hbTitle">Homebrew showcase</h1>
+            <p id="hbSummary" class="muted small">New games for old consoles, made by today's developers. Free to play here.</p>
+        </header>
+        <section id="hbList">
+            <div class="col-filter card">
+                <input type="search" id="hbSearch" placeholder="Search by title, author, genre, tag or description" autocomplete="off" aria-label="Search homebrew">
+                <select id="hbSystem" aria-label="System"><option value="">All systems</option></select>
+                <select id="hbSort" aria-label="Sort">
+                    <option value="new">Newest first</option>
+                    <option value="title">A to Z</option>
+                    <option value="author">By author</option>
+                    <option value="year">By year</option>
+                </select>
+                <button type="button" id="hbRandom" title="Open a random game">&#127922; Random game</button>
+            </div>
+            <div id="hbChips" class="chips hb-chips" role="group" aria-label="Filter by genre or tag"></div>
+            <p id="hbAuthorNote" class="small hb-author-note" hidden></p>
+            <ul id="hbGrid" class="col-grid hb-grid"></ul>
+            <details class="card hb-publish">
+                <summary><strong>Publish your homebrew game here</strong></summary>
+                <ol>
+                    <li>Put the game in a new folder: <code>homebrew/my-game/</code> with the ROM (or a zip).</li>
+                    <li>Add a <code>game.json</code> with at least <code>title</code>, <code>author</code>, <code>system</code>, <code>rom</code> and <code>license</code>; add a description, controls, screenshots and links to make the page complete. Or run <code>node tools/new-homebrew.mjs path/to/game.nes --title "My Game" --author "Me" --license MIT</code>, which does both.</li>
+                    <li>Push to GitHub. The workflow rebuilds <code>homebrew/index.json</code>, and the game gets its own page and a Play button.</li>
+                </ol>
+                <p class="small muted">Every field is described in <a href="homebrew/README.md">homebrew/README.md</a>. Only publish games you made or have permission to share. New releases also appear in the <a href="homebrew/feed.xml">feed</a> (for feed readers).</p>
+            </details>
+        </section>
+        <article id="hbGame" class="hb-game" hidden></article>
+    </main>
+    <dialog id="hbLightbox" class="hb-lightbox" aria-label="Screenshot">
+        <form method="dialog">
+            <img id="hbLightImg" alt="">
+            <p id="hbLightCaption" class="small"></p>
+            <div class="buttons">
+                <button type="button" id="hbLightPrev" aria-label="Previous picture">&#8592;</button>
+                <button type="button" id="hbLightNext" aria-label="Next picture">&#8594;</button>
+                <button type="submit" value="close">Close</button>
+            </div>
+        </form>
+    </dialog>
+    <div id="banners" aria-live="polite"></div>
+    <script type="module" src="assets/homebrew.js"></script>
+</body>
+</html>

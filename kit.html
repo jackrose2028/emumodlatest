@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Build your own arcade – EmulatorJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#111418">
+    <meta name="description" content="Brand this site for a creator, a game jam or an educational project with one file, site.json, and publish it on GitHub Pages.">
+    <link rel="icon" href="docs/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="EmulatorJS">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="apple-touch-icon" href="docs/Logo.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script src="assets/early-view.js"></script>
+    <link rel="stylesheet" href="assets/app.css">
+</head>
+<body class="kit">
+    <main id="kit">
+        <header class="col-head">
+            <a class="back-start" href="index.html">&#8592; All uses</a>
+            <h1>Build your own arcade</h1>
+            <p class="muted small">Make this site yours: a creator's games page, a game jam's entries, a class project. Everything below goes into one file, <code>site.json</code>. Put it at the top of the site and every page takes its name, colours and logo, shows only the parts and systems you choose, and features your games. Then publish it free on GitHub Pages.</p>
+        </header>
+        <div class="kit-layout">
+            <section class="kit-form">
+                <section class="card">
+                    <h2>Start from</h2>
+                    <div class="kit-presets" id="kitPresets"></div>
+                </section>
+                <section class="card">
+                    <h2>Name and look</h2>
+                    <div class="k-form">
+                        <label>Site name <input id="kitName" type="text" maxlength="60"></label>
+                        <label>Tagline on the start page <input id="kitTagline" type="text" maxlength="160"></label>
+                        <label>Public address, once published (for link previews) <input id="kitUrl" type="url" maxlength="200" placeholder="https://your-name.github.io/arcade"></label>
+                        <label>Logo (path on the site, e.g. assets/brand/logo.png) <input id="kitLogo" type="text" maxlength="200"></label>
+                        <label class="button kit-upload">Choose a logo image…<input id="kitLogoFile" type="file" accept="image/png,image/svg+xml,image/jpeg,image/webp" hidden></label>
+                    </div>
+                    <div class="kit-colours" id="kitColours"></div>
+                    <p id="kitContrast" class="small muted"></p>
+                </section>
+                <section class="card">
+                    <h2>What the site offers</h2>
+                    <p class="small muted">Untick the parts you don't want; their tiles disappear from the start page and their pages send visitors to the start page. Choose a start page to open the site straight into one part.</p>
+                    <div class="cf-row" id="kitUses"></div>
+                    <div class="k-form">
+                        <label>Open the site on <select id="kitStart"></select></label>
+                        <label>Heading above the parts <input id="kitUsesTitle" type="text" maxlength="40"></label>
+                    </div>
+                    <h3>Systems</h3>
+                    <p class="small muted">Tick systems to show only those everywhere (game lists, the showcase, the archive, the player). None ticked: every installed system.</p>
+                    <div class="cf-row" id="kitSystems"></div>
+                </section>
+                <section class="card">
+                    <h2>Featured games</h2>
+                    <p class="small muted">Shown at the top of the start page. Homebrew games open their page, archive records their record, library games the player.</p>
+                    <div class="cf-row" id="kitFeatured"></div>
+                </section>
+                <section class="card">
+                    <h2>Footer</h2>
+                    <div class="k-form">
+                        <label>Footer text <input id="kitFooter" type="text" maxlength="200" placeholder="Made for the Spring Game Jam 2027"></label>
+                    </div>
+                    <div id="kitLinks" class="kit-links"></div>
+                    <div class="buttons">
+                        <button type="button" id="kitAddLink">Add a link</button>
+                    </div>
+                    <label class="cf-check"><input type="checkbox" id="kitHidePlan"> Hide the project's own footer links (plan, reference docs, changes)</label>
+                </section>
+            </section>
+
+            <aside class="kit-side">
+                <section class="card kit-preview-card">
+                    <div class="kit-preview-head">
+                        <h2>Preview</h2>
+                        <select id="kitPage" aria-label="Page to preview">
+                            <option value="index.html?home=1">Start page</option>
+                            <option value="homebrew.html">Homebrew showcase</option>
+                            <option value="archive.html">Preservation archive</option>
+                            <option value="links.html">Links</option>
+                        </select>
+                    </div>
+                    <iframe id="kitPreview" title="Preview of your site"></iframe>
+                    <p class="small muted">The preview uses your settings for this view only; nothing is saved or published until you put site.json on the site.</p>
+                </section>
+                <section class="card">
+                    <h2>Your site.json</h2>
+                    <p id="kitCheck" class="small" aria-live="polite"></p>
+                    <pre id="kitJson" class="dev-hex kit-json"></pre>
+                    <div class="buttons">
+                        <button type="button" id="kitDownload" class="primary">Download site.json</button>
+                        <button type="button" id="kitPack">Download branding pack (zip)</button>
+                        <button type="button" id="kitCopy">Copy</button>
+                        <label class="button">Open a site.json<input id="kitOpen" type="file" accept=".json,application/json" hidden></label>
+                    </div>
+                    <p class="small muted">The branding pack also holds your logo (as assets/brand/…) and a matching manifest.webmanifest, so an installed app shows your name and colours.</p>
+                </section>
+            </aside>
+        </div>
+
+        <section class="card kit-guide" id="kitGuide">
+            <h2>Publish it on GitHub Pages (free)</h2>
+            <ol>
+                <li><strong>Get a copy of the site.</strong> On GitHub, create a new repository (or fork this one) and upload the whole site folder. The emulator cores are large: upload only the ones for your systems from <code>data/cores/</code>, then run the "Update game and core indexes" action (Actions tab → Run workflow) so the core list matches.</li>
+                <li><strong>Brand it.</strong> Replace <code>site.json</code> with yours (Add file → Upload files). If you made a branding pack, upload its <code>assets/brand/</code> logo and <code>manifest.webmanifest</code> too. That is the only file you have to change.</li>
+                <li><strong>Add your games.</strong> Put homebrew games in <code>homebrew/&lt;game&gt;/</code> with a <code>game.json</code> (see homebrew/README.md), archive records in <code>archive/</code>, or ROM folders in <code>data/&lt;SYSTEM&gt;/</code>. The workflow builds the lists when you push. Only publish games you made or have permission to share.</li>
+                <li><strong>Switch Pages on.</strong> Settings → Pages → Source: Deploy from a branch → <code>main</code>, folder <code>/ (root)</code> → Save. After a minute the site is at <code>https://your-name.github.io/repository/</code>.</li>
+                <li><strong>Optional: your own address.</strong> Settings → Pages → Custom domain, and point the domain's DNS at GitHub (a CNAME record to your-name.github.io).</li>
+                <li><strong>Check it.</strong> Open the site; the start page shows your name, colours and parts. Open this page there and press "Check the published site.json" below.</li>
+            </ol>
+            <div class="buttons"><button type="button" id="kitVerify">Check the published site.json</button></div>
+            <p id="kitVerifyOut" class="small" aria-live="polite"></p>
+        </section>
+    </main>
+    <div id="banners" aria-live="polite"></div>
+    <script type="module" src="assets/kit.js"></script>
+</body>
+</html>

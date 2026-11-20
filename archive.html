@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Preservation archive – EmulatorJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#111418">
+    <meta name="description" content="Catalogue records for public-domain and rights-cleared software, with provenance, licences and checksums verified in the browser, playable in place.">
+    <link rel="icon" href="docs/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Archive">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="apple-touch-icon" href="docs/Logo.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script src="assets/early-view.js"></script>
+    <link rel="stylesheet" href="assets/app.css">
+</head>
+<body class="archive">
+    <main id="arc">
+        <header class="col-head">
+            <a class="back-start" id="arcBack" href="index.html">&#8592; All uses</a>
+            <h1 id="arcTitle">Preservation archive</h1>
+            <p id="arcSummary" class="muted small">Catalogue records for public-domain and rights-cleared software: who made it, where the copy came from, the licence that allows sharing it, and checksums your browser checks against the file before you play it.</p>
+        </header>
+
+        <section id="arcList">
+            <div class="col-filter card arc-filter">
+                <input type="search" id="arcSearch" placeholder="Search titles, creators, subjects, notes" autocomplete="off" aria-label="Search the catalogue">
+                <select id="arcPlatform" aria-label="Platform"><option value="">All platforms</option></select>
+                <select id="arcLicence" aria-label="Licence"><option value="">All licences</option></select>
+                <select id="arcDecade" aria-label="Decade"><option value="">All years</option></select>
+                <select id="arcSort" aria-label="Sort">
+                    <option value="id">Catalogue number</option>
+                    <option value="title">Title</option>
+                    <option value="year">Year</option>
+                </select>
+            </div>
+            <div class="buttons arc-tools">
+                <button type="button" id="arcVerifyAll">Verify every file</button>
+                <label class="button">Identify a file you have<input type="file" id="arcIdentify" hidden></label>
+                <button type="button" id="arcExportJson">Export catalogue (JSON)</button>
+                <button type="button" id="arcExportCsv">Export catalogue (CSV)</button>
+                <button type="button" id="arcExportZip">Export everything (zip)</button>
+            </div>
+            <p id="arcMsg" class="small muted" aria-live="polite"></p>
+            <div class="table-wrap"><table class="hb-controls arc-table" id="arcTable"></table></div>
+            <details class="card arc-about">
+                <summary><strong>About this archive and how to add a record</strong></summary>
+                <p>Only software that may be shared is catalogued: public domain, free licences, or written permission from the rights holder (recorded in the record). Each record keeps its provenance: when the copy was made or received, by whom, and how.</p>
+                <p>Checksums are the record's fingerprint of the file. CRC32, MD5 and SHA-1 are the three that preservation catalogues publish. Your browser computes them from the file it downloads and compares them with the record, so you can see that the copy you play is the copy that was catalogued.</p>
+                <p>To add a record: make a folder <code>archive/my-record/</code> with a <code>record.json</code> (fields in <a href="archive/README.md">archive/README.md</a>), run <code>node tools/generate-archive-index.mjs --write</code> once to record the checksums, and push. The workflow rechecks every file on each push.</p>
+            </details>
+        </section>
+
+        <article id="arcRecord" class="arc-record" hidden></article>
+    </main>
+    <div id="banners" aria-live="polite"></div>
+    <script type="module" src="assets/archive.js"></script>
+</body>
+</html>

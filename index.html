@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>EmulatorJS – choose how you want to use it</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#111418">
+    <meta name="description" content="Play your own ROM files in the browser. Everything runs locally.">
+    <link rel="icon" href="docs/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="EmulatorJS">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="apple-touch-icon" href="docs/Logo.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script src="assets/early-view.js"></script>
+    <link rel="stylesheet" href="assets/app.css">
+</head>
+<body class="start">
+    <main id="startPage">
+        <header class="start-head">
+            <img class="logo" src="docs/Logo-light.png" alt="" width="72" height="72">
+            <h1>EmulatorJS</h1>
+            <p class="muted">Retro games in the browser, running from this site's own files. What would you like to do?</p>
+            <p id="continue" class="continue" hidden></p>
+        </header>
+
+        <section id="featured" class="start-featured" hidden>
+            <h2 class="start-sub">Featured</h2>
+            <ul class="start-feat" id="featuredList"></ul>
+        </section>
+
+        <a class="use basic-use" href="basic.html" data-use="basic">
+            <span class="use-icon" aria-hidden="true">&#9654;</span>
+            <span class="use-body"><strong>Basic</strong><span>The full player as it has been: open a ROM or zip, the game library folders, recent games, both engines, 2.5D and all options.</span></span>
+            <span class="use-state ready">Ready</span>
+        </a>
+
+        <h2 class="start-sub">Use cases</h2>
+        <ol class="uses">
+            <li><a class="use" href="collection.html" data-use="collection">
+                <span class="use-num">1</span>
+                <span class="use-body"><strong>My Collection</strong><span>Your own game backups in one place on every device you use: add files or whole folders, covers, favourites, play time, and one file to carry the collection and its saves to another device.</span></span>
+                <span class="use-state ready">Ready</span></a></li>
+            <li><a class="use" href="homebrew.html" data-use="homebrew">
+                <span class="use-num">2</span>
+                <span class="use-body"><strong>Homebrew showcase</strong><span>A page per new homebrew game, with credits, controls and a one-click play button, for developers to share their work.</span></span>
+                <span class="use-state ready">Ready</span></a></li>
+            <li><a class="use" href="kiosk.html" data-use="kiosk">
+                <span class="use-num">3</span>
+                <span class="use-body"><strong>Museum and exhibit kiosk</strong><span>Full-screen attract mode, an approved game list, time limits and auto-reset for public screens and touch kiosks.</span></span>
+                <span class="use-state ready">Ready</span></a></li>
+            <li><a class="use" href="classroom.html" data-use="classroom">
+                <span class="use-num">4</span>
+                <span class="use-body"><strong>Classroom: how retro games work</strong><span>Lessons beside a running game: palettes, sprites, tiles and frame timing made visible, with worksheets.</span></span>
+                <span class="use-state ready">Ready</span></a></li>
+            <li><a class="use" href="devtour.html" data-use="devtour">
+                <span class="use-num">5</span>
+                <span class="use-body"><strong>Web development case study</strong><span>A guided tour of how this site works (service worker, WebGL, IndexedDB, threads), linked to the reference docs.</span></span>
+                <span class="use-state ready">Ready</span></a></li>
+            <li><a class="use" href="archive.html" data-use="archive">
+                <span class="use-num">6</span>
+                <span class="use-body"><strong>Preservation archive</strong><span>Catalogue records with metadata, sources and checksums, playable in place, for public-domain and cleared software.</span></span>
+                <span class="use-state ready">Ready</span></a></li>
+            <li><a class="use" href="comfort.html" data-use="comfort">
+                <span class="use-num">7</span>
+                <span class="use-body"><strong>Accessible and comfort play</strong><span>One place for slow motion, rewind, save anywhere, large touch controls, remapping and one-switch play.</span></span>
+                <span class="use-state ready">Ready</span></a></li>
+            <li><a class="use" href="community.html" data-use="community">
+                <span class="use-num">8</span>
+                <span class="use-body"><strong>Community spaces</strong><span>A locked-down, low-power setup for schools, shelters, hospitals and waiting rooms on old or donated devices.</span></span>
+                <span class="use-state ready">Ready</span></a></li>
+            <li><a class="use" href="practice.html" data-use="practice">
+                <span class="use-num">9</span>
+                <span class="use-body"><strong>Events and speedrun practice</strong><span>Shareable game links, practice save points, timers and splits for community nights and practice.</span></span>
+                <span class="use-state ready">Ready</span></a></li>
+            <li><a class="use" href="kit.html" data-use="kit">
+                <span class="use-num">10</span>
+                <span class="use-body"><strong>Build your own arcade</strong><span>A starter kit to brand the site for a creator, a game jam or an educational project.</span></span>
+                <span class="use-state ready">Ready</span></a></li>
+        </ol>
+        <p id="siteFoot" class="start-foot small" hidden></p>
+        <p class="start-foot small muted" id="stdFoot"><a href="ROADMAP.md">The 10-phase plan</a> · <a href="links.html">Links</a> · <a href="reference.html">Reference docs</a> · <a href="ENHANCEMENTS.txt">What's changed</a></p>
+    </main>
+    <script type="module" src="assets/start.js"></script>
+</body>
+</html>

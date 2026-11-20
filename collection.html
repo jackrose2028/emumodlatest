@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>My Collection – EmulatorJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#111418">
+    <meta name="description" content="My Collection: your own game backups in one place on every device, with covers, shelves, play time and one-file export.">
+    <link rel="icon" href="docs/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="EmulatorJS">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="apple-touch-icon" href="docs/Logo.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script src="assets/early-view.js"></script>
+    <link rel="stylesheet" href="assets/app.css">
+<body class="collection">
+    <main id="col">
+        <header class="col-head">
+            <a class="back-start" href="index.html">&#8592; All uses</a>
+            <h1>My Collection</h1>
+            <p id="colSummary" class="muted small">Loading…</p>
+        </header>
+
+        <section class="col-tools card">
+            <div class="col-add">
+                <label class="button primary" for="addFiles">&#xFF0B; Add games</label>
+                <input type="file" id="addFiles" multiple hidden>
+                <label class="button" for="addFolder" id="addFolderBtn">Add a folder</label>
+                <input type="file" id="addFolder" webkitdirectory multiple hidden>
+                <button type="button" id="addRecent" hidden>Add recent games</button>
+                <button type="button" id="exportCol">Export…</button>
+                <label class="button" for="importCol">Import</label>
+                <input type="file" id="importCol" accept=".zip,application/zip" multiple hidden>
+                <button type="button" id="surprise" title="Pick a game for me">&#127922; Surprise me</button>
+                <button type="button" id="selectMode" aria-pressed="false">Select</button>
+            </div>
+            <div class="col-filter">
+                <input type="search" id="colSearch" placeholder="Search titles, shelves, notes" autocomplete="off" aria-label="Search your games">
+                <select id="colSort" aria-label="Sort">
+                    <option value="recent">Sort: recent</option>
+                    <option value="title">Sort: A to Z</option>
+                    <option value="played">Sort: most played</option>
+                    <option value="added">Sort: newest</option>
+                    <option value="system">Sort: system</option>
+                    <option value="size">Sort: size</option>
+                    <option value="status">Sort: status</option>
+                </select>
+                <select id="colView" aria-label="View">
+                    <option value="grid">View: covers</option>
+                    <option value="list">View: list</option>
+                </select>
+                <select id="colEngine" aria-label="Engine"></select>
+            </div>
+            <div id="colSystems" class="chips" role="group" aria-label="Filter by system"></div>
+            <div id="colShelves" class="chips" role="group" aria-label="Filter by shelf or status"></div>
+            <p id="colStorage" class="muted small"></p>
+        </section>
+
+        <section id="colBulk" class="card col-bulk" hidden aria-label="Selected games">
+            <strong id="bulkCount">0 selected</strong>
+            <button type="button" id="bulkAll">Select all shown</button>
+            <button type="button" id="bulkFav">&#9733; Favourite</button>
+            <button type="button" id="bulkShelf">Add to shelf…</button>
+            <button type="button" id="bulkStatus">Set status…</button>
+            <button type="button" id="bulkSystem">Change system…</button>
+            <button type="button" id="bulkExport">Export selected</button>
+            <button type="button" id="bulkRemove" class="danger">Remove</button>
+            <button type="button" id="bulkDone">Done</button>
+        </section>
+
+        <section id="colEmpty" class="card col-empty" hidden>
+            <h2>Start your collection</h2>
+            <p>Add the game files you own (ROMs and zips): pick files, a whole folder, or drop them on this page. They stay in this browser on this device, ready to play any time, offline too.</p>
+            <p>To use the same collection on another phone, tablet or computer, choose <strong>Export</strong> here and <strong>Import</strong> there. Your saves go with it.</p>
+        </section>
+
+        <section id="colContinue" class="col-continue" hidden>
+            <h2 class="col-row-title">Continue playing</h2>
+            <ul class="col-grid col-mini" id="continueGrid"></ul>
+        </section>
+
+        <ul id="colGrid" class="col-grid"></ul>
+        <p class="muted small col-keys">Keyboard and controller: arrow keys or the d-pad move between games, Enter or A plays, D or X opens details, F or Y adds to favourites.</p>
+    </main>
+
+    <div id="dropCover" class="drop-cover" hidden><p>Drop games or folders to add them</p></div>
+
+    <dialog id="reviewDialog" aria-labelledby="reviewTitle">
+        <form method="dialog">
+            <h2 id="reviewTitle">Add to your collection</h2>
+            <p id="reviewText" class="small muted"></p>
+            <p id="reviewSpace" class="small warn-text" hidden></p>
+            <div class="review-list" id="reviewList"></div>
+            <label class="load-row" for="reviewShelf">Put them on a shelf (optional)</label>
+            <input type="text" id="reviewShelf" list="shelfList" placeholder="e.g. Family, Finished, Racing">
+            <div class="buttons load-buttons">
+                <button type="submit" value="add" id="reviewAdd" class="primary">Add</button>
+                <button type="submit" value="cancel">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="editDialog" aria-labelledby="editTitle">
+        <form method="dialog">
+            <h2 id="editTitle">Game details</h2>
+            <div class="edit-cover-row">
+                <div class="col-cover edit-cover" id="editCover"></div>
+                <div class="edit-cover-tools">
+                    <label class="button" for="editCoverFile">Choose a picture…</label>
+                    <input type="file" id="editCoverFile" accept="image/*" hidden>
+                    <button type="button" id="editCoverRemove">Remove picture</button>
+                    <p class="small muted">Without your own picture, the cover is taken from the game after 25 seconds of play.</p>
+                </div>
+            </div>
+            <label class="load-row" for="editName">Title</label>
+            <input type="text" id="editName">
+            <div class="edit-two">
+                <div>
+                    <label class="load-row" for="editSystem">System</label>
+                    <select id="editSystem"></select>
+                </div>
+                <div>
+                    <label class="load-row" for="editCore">Emulator core</label>
+                    <select id="editCore"></select>
+                </div>
+            </div>
+            <div class="edit-two">
+                <div>
+                    <label class="load-row" for="editStatus">Status</label>
+                    <select id="editStatus"></select>
+                </div>
+                <div>
+                    <label class="load-row" for="editShelves">Shelves (commas between)</label>
+                    <input type="text" id="editShelves" list="shelfList">
+                </div>
+            </div>
+            <label class="load-row" for="editNotes">Notes</label>
+            <textarea id="editNotes" rows="3" placeholder="Where you got to, passwords, tips…"></textarea>
+            <p id="editInfo" class="muted small"></p>
+            <div class="buttons load-buttons">
+                <button type="submit" value="save" class="primary">Save</button>
+                <button type="submit" value="remove" class="danger">Remove</button>
+                <button type="submit" value="cancel">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="exportDialog" aria-labelledby="exportTitle">
+        <form method="dialog">
+            <h2 id="exportTitle">Export</h2>
+            <p class="small muted">Makes zip files you can import in My Collection on another device. Large collections are split into parts, so phones with little memory can export and import them; import all the parts there.</p>
+            <fieldset class="export-which">
+                <legend>Which games</legend>
+                <label><input type="radio" name="which" value="all" checked> <span id="expAll">All games</span></label>
+                <label><input type="radio" name="which" value="shown"> <span id="expShown">The games shown now</span></label>
+                <label><input type="radio" name="which" value="selected"> <span id="expSelected">The selected games</span></label>
+            </fieldset>
+            <label class="load-row" for="exportSplit">Size of each part</label>
+            <select id="exportSplit">
+                <option value="0">One file</option>
+                <option value="262144000">250 MB</option>
+                <option value="524288000">500 MB</option>
+                <option value="1073741824">1 GB</option>
+                <option value="2147483648">2 GB</option>
+            </select>
+            <label class="cf-check"><input type="checkbox" id="exportSaves" checked> Include saves (in-game saves and save states)</label>
+            <p id="exportInfo" class="small muted"></p>
+            <div class="buttons load-buttons">
+                <button type="submit" value="go" class="primary">Export</button>
+                <button type="submit" value="cancel">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="pickDialog" aria-labelledby="pickTitle">
+        <form method="dialog">
+            <h2 id="pickTitle"></h2>
+            <div id="pickBody"></div>
+            <div class="buttons load-buttons">
+                <button type="submit" value="ok" class="primary">OK</button>
+                <button type="submit" value="cancel">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+    <datalist id="shelfList"></datalist>
+    <div id="banners" aria-live="polite"></div>
+    <script type="module" src="assets/collection.js"></script>
+</body>
+</html>

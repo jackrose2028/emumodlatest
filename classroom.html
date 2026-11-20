@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Classroom: how retro games work – EmulatorJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#111418">
+    <meta name="description" content="Lessons beside a running game: palettes, sprites, tiles, sound, memory and frame timing made visible, with printable worksheets.">
+    <link rel="icon" href="docs/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Classroom">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="apple-touch-icon" href="docs/Logo.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script src="assets/early-view.js"></script>
+    <link rel="stylesheet" href="assets/app.css">
+</head>
+<body class="classroom">
+    <main id="cls">
+        <header class="col-head cls-head">
+            <a class="back-start" href="index.html">&#8592; All uses</a>
+            <h1>Classroom: how retro games work</h1>
+            <p class="muted small">Run a game and look inside it while it plays: the colours, sprites, tiles, sound channels, memory and frames the console is working with. Pick a lesson below for a 45-minute plan with a printable worksheet.</p>
+        </header>
+
+        <section class="card cls-bar">
+            <label class="cls-pick">Game <select id="clsGame"></select></label>
+            <button type="button" id="clsLoad" class="primary">Load game</button>
+            <button type="button" id="clsProjector" aria-pressed="false" title="Larger text and views for a projector or big screen">Projector mode</button>
+            <a class="button" href="#clsLessons">Lessons</a>
+            <button type="button" id="clsLink" title="Copy a link to this game, view and lesson, for students">Copy link</button>
+        </section>
+
+        <div class="cls-stage">
+            <section class="cls-player">
+                <h2 class="cls-label">What you see</h2>
+                <div class="cls-frame-wrap"><iframe id="clsFrame" title="Game" allow="autoplay; fullscreen; gamepad; cross-origin-isolated"></iframe>
+                    <p id="clsWait" class="cls-wait">Choose a game and press Load game.</p></div>
+                <div class="cls-transport" role="toolbar" aria-label="Game controls">
+                    <button type="button" id="clsPlay" title="Pause or play (, key in the game)">&#10073;&#10073; Pause</button>
+                    <button type="button" id="clsStep" title="Advance one frame (. key in the game; hold a game button while stepping)">Step 1 frame</button>
+                    <button type="button" id="clsStep10">Step 10</button>
+                    <button type="button" id="clsSlow" aria-pressed="false" title="Quarter speed">Slow motion</button>
+                    <button type="button" id="clsRestart">Restart</button>
+                    <button type="button" id="clsMoment" title="Remember this exact moment of the game, to come back to it">&#128204; Save moment</button>
+                    <span class="cls-frameno" id="clsFrameNo">Frame –</span>
+                </div>
+                <div id="clsMoments" class="cls-moments" aria-label="Saved moments"></div>
+                <p class="small muted cls-keys">Click the game to play it with the keyboard (arrows, <kbd>Z</kbd> = A, <kbd>X</kbd> = B, <kbd>V</kbd> = Select, <kbd>Enter</kbd> = Start) or a controller. While the game has the keyboard, <kbd>.</kbd> steps one frame and <kbd>,</kbd> pauses or plays, so you can hold a button while stepping.</p>
+            </section>
+
+            <section class="cls-views">
+                <h2 class="cls-label">What the console sees</h2>
+                <div class="cls-tabs" role="tablist" id="clsTabs"></div>
+                <div class="cls-panel" id="clsPanel"></div>
+            </section>
+        </div>
+
+        <section id="clsLesson" class="card cls-lesson" hidden></section>
+
+        <section id="clsLessons" class="cls-lessons">
+            <h2>Lessons</h2>
+            <p class="muted small">Each lesson fills a 45-minute class: hook, explanation, hands-on work with the live views, a worksheet and a wrap-up. "Show me" buttons load the right game and open the right view. Worksheets print on A4 or Letter, with a separate answer key for the teacher.</p>
+            <ul class="cls-cards" id="clsCards"></ul>
+        </section>
+    </main>
+    <div id="clsPresenter" class="cls-presenter" role="region" aria-label="Lesson presenter" hidden>
+        <div class="cls-pres-text">
+            <strong id="clsPresStep"></strong>
+            <span id="clsPresClock" class="cls-pres-clock"></span>
+            <p id="clsPresNote" class="cls-pres-note"></p>
+        </div>
+        <div class="cls-pres-buttons">
+            <button type="button" id="clsPresPrev" title="Previous step (Page Up)">&#8592; Back</button>
+            <button type="button" id="clsPresShow" class="cls-show">Show me</button>
+            <button type="button" id="clsPresNext" class="primary" title="Next step (Page Down)">Next &#8594;</button>
+            <button type="button" id="clsPresEnd">End</button>
+        </div>
+    </div>
+    <div id="clsPrint" class="cls-print" aria-hidden="true"></div>
+    <div id="banners" aria-live="polite"></div>
+    <script type="module" src="assets/classroom.js"></script>
+</body>
+</html>

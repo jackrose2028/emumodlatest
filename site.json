@@ -1,0 +1,25 @@
+{
+    "format": "ejs-site-1",
+    "name": "EmulatorJS",
+    "url": "",
+    "tagline": "Retro games in the browser, running from this site's own files. What would you like to do?",
+    "logo": "docs/Logo-light.png",
+    "favicon": "",
+    "colors": {
+        "accent": "#1aafff",
+        "primary": "#1a7fd0",
+        "background": "#111418",
+        "card": "#1b2027",
+        "text": "#e6e9ed",
+        "muted": "#8b95a1",
+        "line": "#2d353f"
+    },
+    "uses": ["basic", "collection", "homebrew", "kiosk", "classroom", "devtour", "archive", "comfort", "community", "practice", "kit"],
+    "usesTitle": "Use cases",
+    "startPage": "",
+    "systems": [],
+    "featured": [],
+    "footer": "",
+    "links": [],
+    "hidePlanLinks": false
+}
