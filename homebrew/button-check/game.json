@@ -1,0 +1,24 @@
+{
+    "title": "Button Check",
+    "author": "EmulatorJS local edition",
+    "year": 2026,
+    "version": "1.0",
+    "updated": "2026-11-19",
+    "system": "nes",
+    "rom": "button-check.nes",
+    "license": "CC0-1.0",
+    "genre": "Tool",
+    "players": 1,
+    "description": "A one-screen test cartridge: the screen turns red while the A button is held and green otherwise. Handy for checking that a keyboard, controller or the on-screen touch buttons reach the game.",
+    "controls": {
+        "A": "Hold to turn the screen red"
+    },
+    "screenshots": [
+        "screenshot-1.png"
+    ],
+    "tags": [
+        "test",
+        "input",
+        "tiny"
+    ]
+}

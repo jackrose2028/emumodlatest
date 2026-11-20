@@ -1,0 +1,34 @@
+{
+    "title": "Palette Explorer",
+    "author": "EmulatorJS local edition",
+    "year": 2026,
+    "version": "1.0",
+    "updated": "2026-11-19",
+    "system": "nes",
+    "rom": "palette-explorer.nes",
+    "license": "CC0-1.0",
+    "genre": "Tool",
+    "players": 1,
+    "description": "Walk through the 64 colours the NES can show. The whole screen takes the colour you pick, so you can see exactly what a game artist had to work with. Written in 172 bytes of 6502 machine code; the Python script that builds it is included.",
+    "controls": {
+        "Right": "Next colour",
+        "Left": "Previous colour",
+        "Up": "Brighter row (+16)",
+        "Down": "Darker row (−16)",
+        "Start": "Back to the first colour"
+    },
+    "screenshots": [
+        "screenshot-1.png"
+    ],
+    "links": [
+        {
+            "label": "Source (build script)",
+            "url": "source-palette.py"
+        }
+    ],
+    "tags": [
+        "colour",
+        "learning",
+        "tiny"
+    ]
+}

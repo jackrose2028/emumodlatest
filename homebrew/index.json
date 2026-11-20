@@ -1,0 +1,148 @@
+{
+ "games": [
+  {
+   "folder": "button-check",
+   "title": "Button Check",
+   "author": "EmulatorJS local edition",
+   "credits": [],
+   "year": 2026,
+   "version": "1.0",
+   "updated": "2026-11-19",
+   "system": "nes",
+   "core": null,
+   "rom": "button-check.nes",
+   "license": "CC0-1.0",
+   "genre": "Tool",
+   "players": 1,
+   "tags": [
+    "test",
+    "input",
+    "tiny"
+   ],
+   "description": "A one-screen test cartridge: the screen turns red while the A button is held and green otherwise. Handy for checking that a keyboard, controller or the on-screen touch buttons reach the game.",
+   "controls": {
+    "A": "Hold to turn the screen red"
+   },
+   "links": [],
+   "screenshots": [
+    "screenshot-1.png"
+   ],
+   "video": null,
+   "versions": [],
+   "size": 24592,
+   "crc32": "06793ea3",
+   "md5": "93c8121c7e32123c5652e74eefb7b2de",
+   "sha1": "8c43dcfb1b6d38567ca00c6f6a7f611b5b5b64b3"
+  },
+  {
+   "folder": "palette-explorer",
+   "title": "Palette Explorer",
+   "author": "EmulatorJS local edition",
+   "credits": [],
+   "year": 2026,
+   "version": "1.0",
+   "updated": "2026-11-19",
+   "system": "nes",
+   "core": null,
+   "rom": "palette-explorer.nes",
+   "license": "CC0-1.0",
+   "genre": "Tool",
+   "players": 1,
+   "tags": [
+    "colour",
+    "learning",
+    "tiny"
+   ],
+   "description": "Walk through the 64 colours the NES can show. The whole screen takes the colour you pick, so you can see exactly what a game artist had to work with. Written in 172 bytes of 6502 machine code; the Python script that builds it is included.",
+   "controls": {
+    "Right": "Next colour",
+    "Left": "Previous colour",
+    "Up": "Brighter row (+16)",
+    "Down": "Darker row (−16)",
+    "Start": "Back to the first colour"
+   },
+   "links": [
+    {
+     "label": "Source (build script)",
+     "url": "source-palette.py"
+    }
+   ],
+   "screenshots": [
+    "screenshot-1.png"
+   ],
+   "video": null,
+   "versions": [],
+   "size": 24592,
+   "crc32": "59b03037",
+   "md5": "5bd9e50e67e98dd316abe79c6ead3e1b",
+   "sha1": "94ddd4736aec0d54aa08cd7e229f5a3b2ca43062"
+  },
+  {
+   "folder": "sprite-lab",
+   "title": "Sprite Lab",
+   "author": "EmulatorJS local edition",
+   "credits": [
+    {
+     "name": "EmulatorJS local edition",
+     "role": "Program, graphics and sound"
+    }
+   ],
+   "year": 2026,
+   "version": "1.0",
+   "updated": "2026-11-19",
+   "system": "nes",
+   "core": null,
+   "rom": "sprite-lab.nes",
+   "license": "CC0-1.0",
+   "genre": "Tool",
+   "players": 1,
+   "tags": [
+    "sprites",
+    "scrolling",
+    "sound",
+    "learning",
+    "classroom"
+   ],
+   "description": "A teaching program for the Classroom page. A little robot made of four sprites walks over a scrolling world of tiles. Ten balls share one line, but the NES can only draw eight sprites on a line, so two vanish; switch on flicker to see the trick real games used. Every button also plays one of the NES sound channels.\n\nThe Python build script and the small 6502 assembler it uses are included, so students can change the program and build it again.",
+   "controls": {
+    "Up": "Move the robot",
+    "Down": "Move the robot",
+    "Left": "Move the robot",
+    "Right": "Move the robot",
+    "A": "Flicker on or off (plays the pulse channel)",
+    "B": "Scrolling on or off (plays the triangle channel)",
+    "Select": "Next robot palette (plays the noise channel)",
+    "Start": "Put everything back"
+   },
+   "links": [
+    {
+     "label": "Source (build script)",
+     "url": "source-sprite-lab.py"
+    },
+    {
+     "label": "6502 assembler",
+     "url": "asm6502.py"
+    },
+    {
+     "label": "Use it in the Classroom",
+     "url": "../../classroom.html?game=hb:sprite-lab"
+    }
+   ],
+   "screenshots": [
+    "screenshot-1.png"
+   ],
+   "video": null,
+   "versions": [
+    {
+     "version": "1.0",
+     "date": "2026-11-19",
+     "notes": "First release: a four-sprite robot, ten balls on one line with switchable flicker, two-screen scrolling and three sound channels."
+    }
+   ],
+   "size": 24592,
+   "crc32": "6e6b34f0",
+   "md5": "36151f2eb3e8c49256d0b7e5165ccfbb",
+   "sha1": "9968bc93886a03b236219026efa520438e1be783"
+  }
+ ]
+}

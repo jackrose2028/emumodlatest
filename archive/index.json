@@ -1,0 +1,223 @@
+{
+ "format": "ejs-archive-1",
+ "records": [
+  {
+   "id": "ejsa-0001",
+   "title": "Palette Explorer",
+   "creator": "EmulatorJS local edition",
+   "publisher": "Self-published in this repository",
+   "year": 2026,
+   "platform": "nes",
+   "format": "iNES ROM image; NROM-128 board (mapper 0), 16 KB program, 8 KB graphics (blank)",
+   "region": "Region-free (NTSC timing)",
+   "version": "1.0",
+   "description": "Fills the screen with one of the 64 NES colour codes; the d-pad steps through them. A reference tool for the console's master palette.",
+   "subjects": [
+    "Education",
+    "Colour",
+    "Palette",
+    "6502 assembly"
+   ],
+   "notes": [
+    "172 bytes of 6502 machine code.",
+    "Used by the Classroom lesson on palettes."
+   ],
+   "licence": {
+    "id": "CC0-1.0",
+    "name": "Creative Commons Zero v1.0 Universal",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "statement": "The authors dedicate this program and its source to the public domain."
+   },
+   "provenance": [
+    {
+     "date": "2026-11-18",
+     "event": "Created",
+     "by": "EmulatorJS local edition",
+     "details": "Source written as homebrew/palette-explorer/source-palette.py."
+    },
+    {
+     "date": "2026-11-18",
+     "event": "Built",
+     "by": "EmulatorJS local edition",
+     "details": "python3 source-palette.py; output palette-explorer.nes."
+    },
+    {
+     "date": "2026-11-19",
+     "event": "Catalogued",
+     "by": "EmulatorJS local edition",
+     "details": "Checksums recorded by tools/generate-archive-index.mjs --write."
+    }
+   ],
+   "file": {
+    "path": "homebrew/palette-explorer/palette-explorer.nes",
+    "size": 24592,
+    "crc32": "59b03037",
+    "md5": "5bd9e50e67e98dd316abe79c6ead3e1b",
+    "sha1": "94ddd4736aec0d54aa08cd7e229f5a3b2ca43062"
+   },
+   "media": [
+    {
+     "kind": "Screenshot",
+     "path": "homebrew/palette-explorer/screenshot-1.png",
+     "caption": "Colour code $24 filling the screen."
+    }
+   ],
+   "attachments": [
+    {
+     "kind": "Source code",
+     "path": "homebrew/palette-explorer/source-palette.py",
+     "label": "Build script (Python)"
+    }
+   ],
+   "related": [
+    "ejsa-0003"
+   ],
+   "cataloguer": "EmulatorJS local edition",
+   "catalogued": "2026-11-19",
+   "folder": "palette-explorer",
+   "updated": "2026-11-19"
+  },
+  {
+   "id": "ejsa-0002",
+   "title": "Button Check",
+   "creator": "EmulatorJS local edition",
+   "publisher": "Self-published in this repository",
+   "year": 2026,
+   "platform": "nes",
+   "format": "iNES ROM image; NROM board (mapper 0)",
+   "region": "Region-free (NTSC timing)",
+   "version": "1.0",
+   "description": "A one-screen input test: the screen is green, and turns red while button A on controller 1 is held.",
+   "subjects": [
+    "Test software",
+    "Input"
+   ],
+   "notes": [
+    "Used to test keyboard, controller and touch input in this project."
+   ],
+   "licence": {
+    "id": "CC0-1.0",
+    "name": "Creative Commons Zero v1.0 Universal",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "statement": "The authors dedicate this program to the public domain."
+   },
+   "provenance": [
+    {
+     "date": "2026-11-18",
+     "event": "Created",
+     "by": "EmulatorJS local edition",
+     "details": "Assembled by hand for the project's input tests."
+    },
+    {
+     "date": "2026-11-19",
+     "event": "Catalogued",
+     "by": "EmulatorJS local edition",
+     "details": "Checksums recorded by tools/generate-archive-index.mjs --write."
+    }
+   ],
+   "file": {
+    "path": "homebrew/button-check/button-check.nes",
+    "size": 24592,
+    "crc32": "06793ea3",
+    "md5": "93c8121c7e32123c5652e74eefb7b2de",
+    "sha1": "8c43dcfb1b6d38567ca00c6f6a7f611b5b5b64b3"
+   },
+   "media": [
+    {
+     "kind": "Screenshot",
+     "path": "homebrew/button-check/screenshot-1.png",
+     "caption": "Screen while A is held."
+    }
+   ],
+   "attachments": [],
+   "related": [],
+   "cataloguer": "EmulatorJS local edition",
+   "catalogued": "2026-11-19",
+   "folder": "button-check",
+   "updated": "2026-11-19"
+  },
+  {
+   "id": "ejsa-0003",
+   "title": "Sprite Lab",
+   "creator": "EmulatorJS local edition",
+   "publisher": "Self-published in this repository",
+   "year": 2026,
+   "platform": "nes",
+   "format": "iNES ROM image; NROM-128 board (mapper 0), 16 KB program, 8 KB graphics, vertical mirroring",
+   "region": "Region-free (NTSC timing)",
+   "version": "1.0",
+   "description": "A teaching program: a 16 × 16 character made of four sprites walks over a two-screen world of tiles. Ten sprites share one scanline to demonstrate the NES limit of eight sprites per line, with optional flicker. Buttons trigger the pulse, triangle and noise channels.",
+   "subjects": [
+    "Education",
+    "Sprites",
+    "Scrolling",
+    "Sound",
+    "6502 assembly"
+   ],
+   "notes": [
+    "Written for the Classroom page (classroom.html) of this site.",
+    "Built from a Python script with a small two-pass 6502 assembler; both are kept with the record so the image can be rebuilt and compared byte for byte."
+   ],
+   "licence": {
+    "id": "CC0-1.0",
+    "name": "Creative Commons Zero v1.0 Universal",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "statement": "The authors dedicate this program, its source and its graphics to the public domain."
+   },
+   "provenance": [
+    {
+     "date": "2026-11-19",
+     "event": "Created",
+     "by": "EmulatorJS local edition",
+     "details": "Source written as homebrew/sprite-lab/source-sprite-lab.py."
+    },
+    {
+     "date": "2026-11-19",
+     "event": "Built",
+     "by": "EmulatorJS local edition",
+     "details": "python3 source-sprite-lab.py, using asm6502.py; output sprite-lab.nes."
+    },
+    {
+     "date": "2026-11-19",
+     "event": "Catalogued",
+     "by": "EmulatorJS local edition",
+     "details": "Checksums recorded by tools/generate-archive-index.mjs --write."
+    }
+   ],
+   "file": {
+    "path": "homebrew/sprite-lab/sprite-lab.nes",
+    "size": 24592,
+    "crc32": "6e6b34f0",
+    "md5": "36151f2eb3e8c49256d0b7e5165ccfbb",
+    "sha1": "9968bc93886a03b236219026efa520438e1be783"
+   },
+   "media": [
+    {
+     "kind": "Screenshot",
+     "path": "homebrew/sprite-lab/screenshot-1.png",
+     "caption": "Title screen state: robot, ten balls (two hidden by the sprite limit), clouds, blocks and ground."
+    }
+   ],
+   "attachments": [
+    {
+     "kind": "Source code",
+     "path": "homebrew/sprite-lab/source-sprite-lab.py",
+     "label": "Build script (Python)"
+    },
+    {
+     "kind": "Tool",
+     "path": "homebrew/sprite-lab/asm6502.py",
+     "label": "6502 assembler used to build it"
+    }
+   ],
+   "related": [
+    "ejsa-0001",
+    "ejsa-0002"
+   ],
+   "cataloguer": "EmulatorJS local edition",
+   "catalogued": "2026-11-19",
+   "folder": "sprite-lab",
+   "updated": "2026-11-19"
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>EmulatorJS: homebrew releases</title>
+  <id>urn:ejs-homebrew:feed</id>
+  <link rel="alternate" href="homebrew.html"/>
+  <updated>2026-11-19T00:00:00Z</updated>
+  <entry>
+    <title>Button Check 1.0</title>
+    <id>urn:ejs-homebrew:button-check:1.0</id>
+    <link rel="alternate" href="homebrew/button-check/"/>
+    <updated>2026-11-19T00:00:00Z</updated>
+    <author><name>EmulatorJS local edition</name></author>
+    <summary>A one-screen test cartridge: the screen turns red while the A button is held and green otherwise. Handy for checking that a keyboard, controller or the on-screen touch buttons reach the game.</summary>
+  </entry>
+  <entry>
+    <title>Palette Explorer 1.0</title>
+    <id>urn:ejs-homebrew:palette-explorer:1.0</id>
+    <link rel="alternate" href="homebrew/palette-explorer/"/>
+    <updated>2026-11-19T00:00:00Z</updated>
+    <author><name>EmulatorJS local edition</name></author>
+    <summary>Walk through the 64 colours the NES can show. The whole screen takes the colour you pick, so you can see exactly what a game artist had to work with. Written in 172 bytes of 6502 machine code; the Python script that builds it is included.</summary>
+  </entry>
+  <entry>
+    <title>Sprite Lab 1.0</title>
+    <id>urn:ejs-homebrew:sprite-lab:1.0</id>
+    <link rel="alternate" href="homebrew/sprite-lab/"/>
+    <updated>2026-11-19T00:00:00Z</updated>
+    <author><name>EmulatorJS local edition</name></author>
+    <summary>First release: a four-sprite robot, ten balls on one line with switchable flicker, two-screen scrolling and three sound channels.</summary>
+  </entry>
+</feed>

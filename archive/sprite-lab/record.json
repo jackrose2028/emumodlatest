@@ -1,0 +1,81 @@
+{
+    "id": "ejsa-0003",
+    "title": "Sprite Lab",
+    "creator": "EmulatorJS local edition",
+    "publisher": "Self-published in this repository",
+    "year": 2026,
+    "platform": "nes",
+    "format": "iNES ROM image; NROM-128 board (mapper 0), 16 KB program, 8 KB graphics, vertical mirroring",
+    "region": "Region-free (NTSC timing)",
+    "version": "1.0",
+    "description": "A teaching program: a 16 × 16 character made of four sprites walks over a two-screen world of tiles. Ten sprites share one scanline to demonstrate the NES limit of eight sprites per line, with optional flicker. Buttons trigger the pulse, triangle and noise channels.",
+    "subjects": [
+        "Education",
+        "Sprites",
+        "Scrolling",
+        "Sound",
+        "6502 assembly"
+    ],
+    "notes": [
+        "Written for the Classroom page (classroom.html) of this site.",
+        "Built from a Python script with a small two-pass 6502 assembler; both are kept with the record so the image can be rebuilt and compared byte for byte."
+    ],
+    "licence": {
+        "id": "CC0-1.0",
+        "name": "Creative Commons Zero v1.0 Universal",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "statement": "The authors dedicate this program, its source and its graphics to the public domain."
+    },
+    "provenance": [
+        {
+            "date": "2026-11-19",
+            "event": "Created",
+            "by": "EmulatorJS local edition",
+            "details": "Source written as homebrew/sprite-lab/source-sprite-lab.py."
+        },
+        {
+            "date": "2026-11-19",
+            "event": "Built",
+            "by": "EmulatorJS local edition",
+            "details": "python3 source-sprite-lab.py, using asm6502.py; output sprite-lab.nes."
+        },
+        {
+            "date": "2026-11-19",
+            "event": "Catalogued",
+            "by": "EmulatorJS local edition",
+            "details": "Checksums recorded by tools/generate-archive-index.mjs --write."
+        }
+    ],
+    "file": {
+        "path": "homebrew/sprite-lab/sprite-lab.nes",
+        "size": 24592,
+        "crc32": "6e6b34f0",
+        "md5": "36151f2eb3e8c49256d0b7e5165ccfbb",
+        "sha1": "9968bc93886a03b236219026efa520438e1be783"
+    },
+    "media": [
+        {
+            "kind": "Screenshot",
+            "path": "homebrew/sprite-lab/screenshot-1.png",
+            "caption": "Title screen state: robot, ten balls (two hidden by the sprite limit), clouds, blocks and ground."
+        }
+    ],
+    "attachments": [
+        {
+            "kind": "Source code",
+            "path": "homebrew/sprite-lab/source-sprite-lab.py",
+            "label": "Build script (Python)"
+        },
+        {
+            "kind": "Tool",
+            "path": "homebrew/sprite-lab/asm6502.py",
+            "label": "6502 assembler used to build it"
+        }
+    ],
+    "related": [
+        "ejsa-0001",
+        "ejsa-0002"
+    ],
+    "cataloguer": "EmulatorJS local edition",
+    "catalogued": "2026-11-19"
+}

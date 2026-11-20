@@ -1,0 +1,60 @@
+{
+    "title": "Sprite Lab",
+    "author": "EmulatorJS local edition",
+    "year": 2026,
+    "version": "1.0",
+    "updated": "2026-11-19",
+    "system": "nes",
+    "rom": "sprite-lab.nes",
+    "license": "CC0-1.0",
+    "genre": "Tool",
+    "players": 1,
+    "description": "A teaching program for the Classroom page. A little robot made of four sprites walks over a scrolling world of tiles. Ten balls share one line, but the NES can only draw eight sprites on a line, so two vanish; switch on flicker to see the trick real games used. Every button also plays one of the NES sound channels.\n\nThe Python build script and the small 6502 assembler it uses are included, so students can change the program and build it again.",
+    "controls": {
+        "Up": "Move the robot",
+        "Down": "Move the robot",
+        "Left": "Move the robot",
+        "Right": "Move the robot",
+        "A": "Flicker on or off (plays the pulse channel)",
+        "B": "Scrolling on or off (plays the triangle channel)",
+        "Select": "Next robot palette (plays the noise channel)",
+        "Start": "Put everything back"
+    },
+    "screenshots": [
+        "screenshot-1.png"
+    ],
+    "links": [
+        {
+            "label": "Source (build script)",
+            "url": "source-sprite-lab.py"
+        },
+        {
+            "label": "6502 assembler",
+            "url": "asm6502.py"
+        },
+        {
+            "label": "Use it in the Classroom",
+            "url": "../../classroom.html?game=hb:sprite-lab"
+        }
+    ],
+    "tags": [
+        "sprites",
+        "scrolling",
+        "sound",
+        "learning",
+        "classroom"
+    ],
+    "credits": [
+        {
+            "name": "EmulatorJS local edition",
+            "role": "Program, graphics and sound"
+        }
+    ],
+    "versions": [
+        {
+            "version": "1.0",
+            "date": "2026-11-19",
+            "notes": "First release: a four-sprite robot, ten balls on one line with switchable flicker, two-screen scrolling and three sound channels."
+        }
+    ]
+}
